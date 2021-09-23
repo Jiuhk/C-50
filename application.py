@@ -108,7 +108,7 @@ def buy():
         # Write into history
         # db.execute("INSERT INTO history (user_id, symbol, stock_price, shares, total_price, timestamp) VALUES (?, ?, ?, ?, ?, current_timestamp)", session["user_id"], symbol, stock_price, shares, total_price)
         # db.execute("INSERT INTO history (id, user_id, symbol, stock_price, shares, total_price, timestamp) VALUES (111, 1, 'aa', 1, 1, 1, '123')")
-        db.execute("INSERT INTO test (user_id) VALUES (2)")
+        db.execute("INSERT INTO test (id, user_id) VALUES (2, 2)")
 
         # Update cash
         cash = cash - total_price
