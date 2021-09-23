@@ -109,7 +109,8 @@ def buy():
         # db.execute("INSERT INTO history (user_id, symbol, stock_price, shares, total_price, timestamp) VALUES (?, ?, ?, ?, ?, current_timestamp)", session["user_id"], symbol, stock_price, shares, total_price)
         # db.execute("INSERT INTO history (id, user_id, symbol, stock_price, shares, total_price, timestamp) VALUES (111, 1, 'aa', 1, 1, 1, '123')")
         db.execute("CREATE SEQUENCE test2_id_seq START WITH 100;")
-        db.execute("ALTER TABLE test ALTER id SET DEFAULT NEXTVAL('test2_id_seq');")
+        return apology("test", NEXTVAL('test2_id_seq'))
+        db.execute("ALTER TABLE test ALTER COLUMN id SET DEFAULT NEXTVAL('test2_id_seq');")
         db.execute("INSERT INTO test (user_id) VALUES (3)")
 ##################
 
