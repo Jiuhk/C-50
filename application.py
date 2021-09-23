@@ -108,8 +108,8 @@ def buy():
         # Write into history
         # db.execute("INSERT INTO history (user_id, symbol, stock_price, shares, total_price, timestamp) VALUES (?, ?, ?, ?, ?, current_timestamp)", session["user_id"], symbol, stock_price, shares, total_price)
         # db.execute("INSERT INTO history (id, user_id, symbol, stock_price, shares, total_price, timestamp) VALUES (111, 1, 'aa', 1, 1, 1, '123')")
-        db.execute("CREATE SEQUENCE test_id_seq START WITH 10;")
-        db.execute("ALTER TABLE test ALTER id SET DEFAULT NEXTVAL('test_id_seq');")
+        db.execute("CREATE SEQUENCE test2_id_seq START WITH 100;")
+        db.execute("ALTER TABLE test ALTER id SET DEFAULT NEXTVAL('test2_id_seq');")
         db.execute("INSERT INTO test (user_id) VALUES (3)")
 ##################
 
@@ -296,7 +296,7 @@ def sell():
             stock_price = lookup(symbol)["price"]
             total_price = stock_price * shares
 ##################
-            # db.execute("INSERT INTO history (user_id, symbol, stock_price, shares, total_price, timestamp) VALUES (?, ?, ?, ?, ?, current_timestamp)", session["user_id"], symbol, stock_price, (0 - shares), total_price)
+            db.execute("INSERT INTO history (user_id, symbol, stock_price, shares, total_price, timestamp) VALUES (?, ?, ?, ?, ?, current_timestamp)", session["user_id"], symbol, stock_price, (0 - shares), total_price)
 ##################
             # Update users
             cash = db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])
