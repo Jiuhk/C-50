@@ -110,6 +110,7 @@ def buy():
         # db.execute("INSERT INTO history (id, user_id, symbol, stock_price, shares, total_price, timestamp) VALUES (111, 1, 'aa', 1, 1, 1, '123')")
         db.execute("ALTER TABLE test DROP COLUMN id;")
         db.execute("ALTER TABLE test ADD COLUMN id SERIAL PRIMARY KEY;")
+        db.execute("INSERT INTO test (user_id) VALUES (3)")
 ##################
 
         # Update cash
