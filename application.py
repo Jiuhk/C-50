@@ -106,11 +106,12 @@ def buy():
             return apology("not enough cash", 403)
 
         # Write into history
-        # db.execute("INSERT INTO history (user_id, symbol, stock_price, shares, total_price, timestamp) VALUES (?, ?, ?, ?, ?, current_timestamp)", session["user_id"], symbol, stock_price, shares, total_price)
-        # db.execute("INSERT INTO history (id, user_id, symbol, stock_price, shares, total_price, timestamp) VALUES (111, 1, 'aa', 1, 1, 1, '123')")
-        db.execute("ALTER TABLE test DROP COLUMN id;")
-        db.execute("ALTER TABLE test ADD COLUMN id SERIAL PRIMARY KEY;")
-        db.execute("INSERT INTO test (user_id) VALUES (3)")
+        db.execute("ALTER TABLE history DROP COLUMN id;")
+        db.execute("ALTER TABLE history ADD COLUMN id SERIAL PRIMARY KEY;")
+        db.execute("ALTER TABLE users DROP COLUMN id;")
+        db.execute("ALTER TABLE users ADD COLUMN id SERIAL PRIMARY KEY;")
+        db.execute("INSERT INTO history (user_id, symbol, stock_price, shares, total_price, timestamp) VALUES (?, ?, ?, ?, ?, current_timestamp)", session["user_id"], symbol, stock_price, shares, total_price)
+
 ##################
 
         # Update cash
