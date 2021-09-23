@@ -106,7 +106,7 @@ def buy():
             return apology("not enough cash", 403)
 
         # Write into history
-        db.execute("INSERT INTO history (user_id, symbol, stock_price, shares, total_price, timestamp) VALUES (?, ?, ?, ?, ?, current_timestamp)", session["user_id"], symbol, stock_price, shares, total_price)
+        db.execute("INSERT INTO history (user_id, symbol, stock_price, shares, total_price, timestamp) VALUES (?, ?, ?, ?, ?, '123')", session["user_id"], symbol, stock_price, shares, total_price)
 
         # Update cash
         cash = cash - total_price
