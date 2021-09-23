@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quote
+{% endblock %}
+
+{% block main %}
+    <form action="/quote" method="post">
+        <div class="form-group">
+            <input autocomplete="off" autofocus class="form-control" name="symbol" placeholder="Symbol" type="text">
+        </div>
+        <button class="btn btn-primary" type="submit">Check</button>
+    </form>
+    <div class="section p-5 table">
+        <h2>QUOTE</h2>
+        <table class='center container'>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Symbol</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- TODO: Loop through the database entries to display them in this table -->
+                {% for quote in quotes %}
+                    <tr class="{{ loop.cycle('odd', 'even') }}">
+                        <td>{{ quote.name }}</td>
+                        <td>{{ quote.price | usd }}</td>
+                        <td>{{ quote.symbol }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    <p></p>
+    <p></p>
+    <p></p>
+    <form action="/quote" method="post">
+        <button class="btn btn-primary" name='submit_button' type="submit" value="clear">Clear</button>
+    </form>
+
+    </div>
+{% endblock %}

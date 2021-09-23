@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    History
+{% endblock %}
+
+{% block main %}
+    <div class="section p-5 table">
+        <h2>History</h2>
+        <table class='center container'>
+            <thead>
+                <tr>
+                    <th>Type</th>
+                    <th>Symbol</th>
+                    <th>Price</th>
+                    <th>Shares</th>
+                    <th>Total</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- TODO: Loop through the database entries to display them in this table -->
+                {% for history_item in history %}
+                    <tr class="{{ loop.cycle('odd', 'even') }}">
+                        <td>{{ history_item.type }}</td>
+                        <td>{{ history_item.symbol }}</td>
+                        <td>{{ history_item.shares }}</td>
+                        <td>{{ history_item.stock_price | usd }}</td>
+                        <td>{{ history_item.total_price | usd }}</td>
+                        <td>{{ history_item.timestamp }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    <p></p>
+    <p></p>
+    <p></p>
+
+{% endblock %}
