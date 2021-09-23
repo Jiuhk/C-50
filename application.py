@@ -274,7 +274,7 @@ def sell():
     """Sell shares of stock"""
 
     # Get stock profile
-    stocks = db.execute("SELECT DISTINCT symbol FROM history WHERE user_id = ?", session["user_id"])
+    stocks = db.execute("SELECT symbol FROM history WHERE user_id = ? GROUP BY symbol HAVING SUM(shares) > 0", session["user_id"])
 
     if request.method == "POST":
 
