@@ -106,7 +106,7 @@ def buy():
             return apology("not enough cash", 403)
 
         # Write into history
-        db.execute("INSERT INTO history (user_id, symbol, stock_price, shares, total_price, timestamp) VALUES (?), (?), (?), (?), (?), (CURRENT_TIMESTAMP)", session["user_id"], symbol, stock_price, shares, total_price)
+        db.execute("INSERT INTO history (user_id, symbol, stock_price, shares, total_price, timestamp) VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)", session["user_id"], symbol, stock_price, shares, total_price)
 
         # Update cash
         cash = cash - total_price
@@ -249,7 +249,7 @@ def register():
             return apology("passwords don't match", 403)
 
         # Store in the database
-        db.execute("INSERT INTO users (username, hash) VALUES (?), (?)", username, generate_password_hash(password))
+        db.execute("INSERT INTO users (username, hash) VALUES (?, ?)", username, generate_password_hash(password))
 
         # Auto log-in
         rows = db.execute("SELECT * FROM users WHERE username = ?", username)
@@ -290,7 +290,7 @@ def sell():
             # Write into history
             stock_price = lookup(symbol)["price"]
             total_price = stock_price * shares
-            db.execute("INSERT INTO history (user_id, symbol, stock_price, shares, total_price, timestamp) VALUES (?), (?), (?), (?), (?), (CURRENT_TIMESTAMP)", session["user_id"], symbol, stock_price, (0 - shares), total_price)
+            db.execute("INSERT INTO history (user_id, symbol, stock_price, shares, total_price, timestamp) VALUES (?, ?, ?, ?, ?, CURRENT_TIMESTAMP)", session["user_id"], symbol, stock_price, (0 - shares), total_price)
 
             # Update users
             cash = db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])
