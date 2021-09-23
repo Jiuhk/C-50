@@ -47,7 +47,7 @@ def index():
     """Show portfolio of stocks"""
 
     # Get stocks profile
-    stocks = db.execute("SELECT symbol, SUM(shares) AS shares FROM history WHERE user_id = ? GROUP BY symbol", session["user_id"])
+    stocks = db.execute("SELECT symbol, SUM(shares) AS shares FROM history WHERE user_id = ? GROUP BY symbol HAVING SUM(shares) > 0", session["user_id"])
     stock_total = 0
 
     for stock in stocks:
@@ -296,9 +296,8 @@ def sell():
             # Write into history
             stock_price = lookup(symbol)["price"]
             total_price = stock_price * shares
-##################
             db.execute("INSERT INTO history (user_id, symbol, stock_price, shares, total_price, timestamp) VALUES (?, ?, ?, ?, ?, current_timestamp)", session["user_id"], symbol, stock_price, (0 - shares), total_price)
-##################
+
             # Update users
             cash = db.execute("SELECT cash FROM users WHERE id = ?", session["user_id"])
             cash_new = cash[0]["cash"] + total_price
