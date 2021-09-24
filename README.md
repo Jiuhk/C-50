@@ -1,4 +1,4 @@
-C$50 Finance by Jiu
+# C$50 Finance by Jiu
 
 https://financebyjiu.herokuapp.com/
 
