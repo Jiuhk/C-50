@@ -5,18 +5,19 @@
 {% endblock %}
 
 {% block main %}
-    <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1770&q=80" width="450" height="350" alt="stock"/>
-    <form action="/login" method="post">
-        <div class="form-group">
-            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
-        </div>
-        <div class="form-group">
-            <input class="form-control" name="password" placeholder="Password" type="password">
-        </div>
-        <button class="btn btn-primary" type="submit">Log In</button>
-        <p style="font-size:3px">
-            <br>
-            <a href="/register" id="register" >Register</a> if you don't have an account
-        </p>
-    </form>
+    <div style="background-image: url('https://images.unsplash.com/photo-1560221328-12fe60f83ab8?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1774&q=80');min-height: 500px; background-size: cover;">
+        <form action="/login" method="post">
+            <div class="form-group">
+                <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+            </div>
+            <div class="form-group">
+                <input class="form-control" name="password" placeholder="Password" type="password">
+            </div>
+            <button class="btn btn-primary" type="submit">Log In</button>
+            <p style="font-size:3px; color:white">
+                <br>
+                <a href="/register" id="register" >Register</a> if you don't have an account
+            </p>
+        </form>
+    </div>
 {% endblock %}
